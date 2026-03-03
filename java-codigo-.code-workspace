@@ -1,11 +1,7 @@
 {
-	"folders": [
-		{
-			"path": "."
-		},
-		{
-			"path": "../python-codigo"
-		}
-	],
-	"settings": {}
+    "folders": [
+        {
+            "path": "../python-codigo"
+        }
+    ]
 }
