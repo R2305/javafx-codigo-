@@ -1,16 +1,15 @@
-package com.example.application;
-
 import javafx.application.Application;
 import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class CalculadoraAv extends Application {
+public class CalculadoraAV extends Application {
     private  TextField pantalla;
-    public static void main(String[] args) {Application.launch(HelloApplication.class, args);
-        launch (args);
+    public static void main(String[] args) {
+        launch(args);
     }
     @Override
     public void start (Stage stage){
@@ -37,53 +36,57 @@ public class CalculadoraAv extends Application {
             Button btn = crearBoton(num);
             btn.setOnAction(e->agregarTexto(num));
             grid.add(btn,col,fila);
-
+            col++;
+            if(col > 2) {
+                col = 0;
+                fila++;
+            }
         }
+
+        Button btnSuma = crearBoton("+");
+        btnSuma.setOnAction(e->agregarTexto("+"));
+
+        Button btnResta = crearBoton("-");
+        btnResta.setOnAction(e->agregarTexto("-"));
+
+        Button btnMulti = crearBoton("*");
+        btnMulti.setOnAction(e->agregarTexto("*"));
+
+        Button btnDiv = crearBoton("/");
+        btnDiv.setOnAction(e->agregarTexto("/"));
+
+        Button btnIgual = crearBoton("=");
+        btnIgual.setOnAction(e->agregarTexto("="));
+
+        Button btnLimpiar = crearBoton("C");
+        btnLimpiar.setOnAction(e->pantalla.clear());
+
+        grid.add(btnDiv,3,0);
+        grid.add(btnMulti,3,1);
+        grid.add(btnResta,3,2);
+        grid.add(btnSuma,3,3);
+        grid.add(btnLimpiar,1,4);
+        grid.add(btnIgual,2,4);
+
+        VBox root = new VBox(10,pantalla,grid);
+        root.setPadding(new Insets(15));
+        root.setAlignment(Pos.CENTER);
+
+        Scene scene = new Scene(root,300,350);
+
+        stage.setTitle("Calculadora JavaFx Avanzada");
+        stage.setScene(scene);
+        stage.show();
     }
 
-    Button btnSuma = crearBoton ("+");
-    btnSuma.setOnAction(e->agregarTexto("+"));
+    private void agregarTexto(String valor){
+        pantalla.setText(pantalla.getText() + valor);
+    }
 
-    Button btnResta = crearBoton ("-");
-    btnResta.setOnAction(e->agregarTexto("-"));
-
-    Button btnMulti = crearBoton ("*");
-    btnMulti.setOnAction(e->agregarTexto("*"));
-
-    Button btnDiv = crearBoton ("/");
-    btnDiv.setOnAction(e->agregarTexto("/"));
-
-    Button btnIgual = crearBoton ("=");
-    btnIgual.setOnAction(e->agregarTexto("="));
-
-    Button btnLimpiar = crearBoton ("C");
-    btnLimpiar.setOnAction(e->pantalla.clear());
-
-    grid.add(btnDiv,3,0);
-    grid.add(btnMulti,3,1);
-    grid.add(btnResta,3,2);
-    grid.add(btnSuma,3,3);
-    grid.add(btnLimpiar,1,4);
-    grid.add(btnIgual,2,4);
-
-    Vbox root = new vbox (10,pantalla,grid);
-    root.setPadding(new Insets(15));
-    root.setAligment(Pos.CENTER);
-
-    Scene scene = new Scene (root,300,350);
-
-    stage.setTitle("Calculadora JavaFx Avanzada");
-    stage.setScene(scene);
-    stage.show();
-
-}
-
-private void agregarTexto(String valor){
-    pantalla.setText(pantalla.getText() +valor);
-}
-private void crearBoton (String texto){
-    Button btn = new Button (texto);
-    btn.setPrefSize(60,60);
-    btn.setMaxSize(Double.MAx_VALUE,Double.MAX_VALUE);
-    return btn;
+    private Button crearBoton(String texto){
+        Button btn = new Button(texto);
+        btn.setPrefSize(60,60);
+        btn.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        return btn;
+    }
 }

@@ -1,0 +1,2 @@
+javac --module-path "C:\Users\ruela\Desktop\javafx-sdk-25\lib" --add-modules javafx.controls,javafx.fxml Calculadorabasica.java #compila
+javac --module-path "C:\Users\ruela\Desktop\javafx-sdk-25\lib" --add-modules javafx.controls,javafx.fxml Calculadorabasica.java # ejecuta
