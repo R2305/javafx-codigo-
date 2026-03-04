@@ -78,7 +78,7 @@ public class CalculadoraAv extends Application {
 
 }
 
-private vpid agregarTexto(String valor){
+private void agregarTexto(String valor){
     pantalla.setText(pantalla.getText() +valor);
 }
 private void crearBoton (String texto){
